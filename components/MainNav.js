@@ -93,7 +93,7 @@ const navbarStyles = {
     mobileMenuItem:'text-end',
     mobileMenuText:'text-[20px] font-reading text-gray-400',
     mobileBottomItems:'px-3',
-    signinBtn:'block w-full h-[58px] flex flex-row justify-between items-center px-3 bg-pink-400 rounded-md',
+    signinBtn:'block w-full h-[58px] flex flex-row justify-between items-center px-3 bg-pink-400 rounded-md mb-10',
     btnItems:'text-xl',
     createAcctBtn:''
   }

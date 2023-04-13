@@ -43,7 +43,7 @@ export default function Footer () {
     )
 }
 const footerStyles = {
-    footer: 'w-full flex flex-col md:flex-row justify-center item-center gap-2 md:justify-between py-3 px-4 bg-indigo-900 ',
+    footer: 'w-full flex flex-col md:flex-row justify-center item-center gap-2 md:justify-between py-3 px-4 bg-indigo-950 ',
     copyrightsBlock:' flex items-center ',
     copyrights:'text-indigo-300',
     socialBlock:'flex flex-row items-center md:gap-3 gap-1',
