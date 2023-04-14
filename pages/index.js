@@ -1,7 +1,14 @@
 import Head from 'next/head';
+import { useState,useEffect } from 'react';
+import { GiMagnifyingGlass } from 'react-icons/gi';
 
 
 export default function Home() {
+  const [screenHeight,setScreenHeight] = useState (0);
+
+  useEffect(() => {
+    setScreenHeight(window.innerHeight - 60);
+  },[])
 
   return (
     <>
@@ -11,9 +18,39 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/realfast_logo.png" />
       </Head>
-      <main>
+      <main className={styles.container } styles={{height:`${screenHeight}px`}}>
+        <div className={styles.wrapper}>   
+            <div className={styles.searchBlock}>
+              <div className={styles.searchPanel}>
+                <input type='text' placeholder='eg. human resources manager' className={styles.search}/>
+                <button className={styles.searchBtn}>
+                  Search
+                  <GiMagnifyingGlass/>  
+                </button>
+                </div>
+              </div>
+            </div>
 
+            <p className={styles.message}>Your dream job is just a click away</p>
+
+            <div className={styles.otherActions}>
+              <button className={styles.quickFinder}>Recent jobs</button>
+              <button className={styles.quickFinder}>High paying jobs jobs</button>
+              <button className={styles.quickFinder}>Closing soon</button>
+            </div>
       </main>
     </>
   )
+}
+
+const styles = {
+  container:'w-full h-screen flex flex-col justify-center items-center px-16',
+  wrapper:'w-full md:w-[720px]',
+  searchBlock:'w-full',
+  searchPanel:'w-full flex flex-row gap-2',
+  search:'w-full  border border-indigo-200 rounded-full py-5 px-3',
+  searchBtn:'flex flex-row items-center bg-indigo-800 text-white px-3 py-5 rounded-full pointer-cursor',
+  message:'',
+  otherActions:'',
+  quickFinder:'',
 }

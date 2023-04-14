@@ -34,12 +34,12 @@ export default function JobCard () {
 }
 
 const styles = {
-    card:'border border-gray-200 rounded-md p-3',
+    card:'border border-gray-200 rounded-md p-3 mb-4',
     head:'flex flex-row justify-between',
     titleBlock:'',
     body:'border-t border-gray-300',
     metaBlock:'flex flex-row justify-between mt-4',
-    wageBlock:'flex flex-row gap-3',
+    wageBlock:'flex flex-row items-center gap-3 ',
     metaBlock:'flex flex-row justify-between',
     metaText:'text-lg font-bold',
     companyName:'text-lg',
