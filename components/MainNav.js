@@ -82,7 +82,7 @@ export default function MainNav() {
 const navbarStyles = {
     navBar:'h-[60px] flex flex-row justify-between items-center px-3 border border-gray-200 shadow-md',
     navSection:'flex flex-row space-x-3',
-    brandName:'font-reading text-2xl text-purple-600 font-bold',
+    brandName:'font-brand text-2xl text-purple-600 font-bold',
     navText:'text-gray-700 hover:text-purple-600',
     responsiveMenuItems:'hidden sm:block',
     menu:'block md:hidden w-[38px] h-[38px] text-gray-500 ',
