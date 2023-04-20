@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { AiOutlineClose,AiOutlineArrowRight } from 'react-icons/ai';
 
 export default function MainNav() {
     const [showMobileNav,setShowMobileNav] = useState(false);
 
+    const router = useRouter()
+     
+    
+
     return (
         <div>
-            <nav className={navbarStyles.navBar}>
+            <nav className={navbarStyles.navBar} style={{
+                backgroundColor:router.asPath.split('/').includes('talents') ? '#ddd6fe' : null
+            }}>
             <ul className={navbarStyles.navSection}>
                 <li className={navbarStyles.responsiveMenuItems}>
-                <Link href='#' className={navbarStyles.brandName}>Real Fast</Link>
+                <Link href='/' className={navbarStyles.brandName}>Real Fast</Link>
                 </li>
                 <li>
                 <Image width={30} height={38} src='/realfast_logo.png' alt='real fast logo'/>
@@ -49,7 +56,7 @@ export default function MainNav() {
             <div className={navbarStyles.halfScreenMenuBlock}>
                 <ul className={navbarStyles.mobileMenuItems}>
                 <li className={navbarStyles.mobileMenuItem}>
-                    <Link href='#' className={navbarStyles.mobileMenuText}>Home</Link>
+                    <Link href='/' className={navbarStyles.mobileMenuText}>Home</Link>
                 </li>
                 <li className={navbarStyles.mobileMenuItem}>
                     <Link href='#' className={navbarStyles.mobileMenuText}>Find Jobs</Link>

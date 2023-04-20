@@ -31,10 +31,7 @@ export default function Home() {
                 <p className={styles.message}>Your dream job is just a click away</p>
               </div>
               
-           
-
-            
-
+          
             <div className={styles.otherActions}>
               <button className={styles.quickFinder}>Recent jobs</button>
               <button className={styles.quickFinder}>High paying jobs jobs</button>
