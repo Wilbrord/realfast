@@ -1,12 +1,44 @@
 import Head from "next/head";
 import { useEffect,useState } from "react";
+import { useFormik } from "formik";
+import * as yup from 'yup';
+
+
+
+//create the validation schema/rules 
+const filedSchema = yup.object().shape({
+    firstName:yup.string().required('Hey,fill this field').min(2,'Please enter two or chars'),
+    lastName:yup.string().required('Hey,fill this field').min(2,'Please enter two or chars'),
+    phoneNo:yup.string().required().min(10).max(17),
+    address:yup.string().required('hey fill this field').min(18),
+    gender:yup.string().notOneOf(['not specified'])
+})
 
 export default function ProfileUpdate () {
     const [screenHeight,setScreenHeight] = useState (0);
 
+    
     useEffect(() => {
       setScreenHeight(window.innerHeight - 60);
-    },[])
+    },[]);
+
+    const { values,handleBlur,handleChange,errors,handleSubmit,touched } = useFormik({
+        validationSchema:filedSchema,
+        initialValues:{
+            firstName:'',
+            lastName:'',
+            phoneNo:'',
+            address:'',
+            dob:'',
+            gender:'', 
+        },
+        onSubmit:(values) => {
+            console.log(values.firstName);
+
+            //get filed values here and perform any operation
+        }
+        
+    })
 
     return (
         <>
@@ -20,22 +52,40 @@ export default function ProfileUpdate () {
         <div className={styles.wrapper}>
             <h2 className={styles.title}>Update your Profile</h2>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className={styles.inputeBlockRow}>
                     <div className={styles.inputeBlock}>
                         <label className={styles.label}>first name</label>
                         <input
+                        id="firstName"
                         type="text" 
                         placeholder="first and middlename" 
-                        className={styles.inputeField}>
+                        className={styles.inputeField}
+                        value={values.firstName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}>
+                        {
+                            errors.firstName && touched.firstName
+                            ? <p className={styles.formError} style={{color:'red'}}>{errors.gender} </p>: null
+                        }
                         </input>
+                        
+                        <p>error found hear</p>
                     </div>
                     <div className={styles.inputeBlock}>
                         <label className={styles.label}>last name</label>
                         <input
+                        id="lastName"
                         type="text" 
                         placeholder="surname" 
-                        className={styles.inputeField}>
+                        className={styles.inputeField}
+                        value={values.lastName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}>
+                        {
+                            errors.lastName && touched.lastName
+                            ? <p className={styles.formError} style={{color:'red'}}>{errors.gender} </p>: null
+                        }
                         </input>
                     </div>
                 </div>
@@ -44,35 +94,68 @@ export default function ProfileUpdate () {
                         <label className={styles.label}>Phone number</label>
                         <input
                         type="text" 
+                        id="phoneNo"
                         placeholder="phone number" 
-                        className={styles.inputeField}>
+                        className={styles.inputeField}
+                        value={values.phoneNo}
+                        onChange={handleChange}
+                        onBlur={handleBlur}>
+                        {
+                            errors.phoneNo && touched.phoneNo
+                            ? <p className={styles.formError} style={{color:'red'}}>{errors.gender} </p>: null
+                        }
                         </input>
-                    </div>
-                    <div className={styles.inputeBlockMain}>
+                </div>
+                <div className={styles.inputeBlockMain}>
                         <label className={styles.label}>Address</label>
                         <input
                         type="text" 
+                        id="address"
                         placeholder="contact address" 
-                        className={styles.inputeField}>
+                        className={styles.address}
+                        value={values.firstName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}>
+                        {
+                            errors.address && touched.address
+                            ? <p className={styles.formError} style={{color:'red'}}>{errors.gender} </p>: null
+                        }
                         </input>
-                    </div>
+                </div>
 
                 <div className={styles.inputeBlockRow}>
                     <div className={styles.inputeBlock}>
                         <label className={styles.label}>Date of Birth</label>
                         <input
+                        id="dob"
                         type="date" 
-                        className={styles.inputeField}>
+                        className={styles.inputeField}
+                        value={values.dob}
+                        onChange={handleChange}
+                        onBlur={handleBlur}>
+                        {
+                            errors.dob && touched.dob
+                            ? <p className={styles.formError} style={{color:'red'}}>{errors.gender} </p>: null
+                        }
                         </input>
                     </div>
                     
                     <div className={styles.inputeBlock}>
                         <label className={styles.label}>gender</label>
-                        <select className={styles.inputeField}>
+                        <select 
+                        className={styles.inputeField} 
+                        id="gender"
+                        value={values.gender}
+                        onChange={handleChange}
+                        onBlur={handleBlur}>
                             <option value='Not specified '>Not specifide</option>
                             <option value='Male'>Male</option>
                             <option value='Female'>Female</option>
                         </select>
+                        {
+                            errors.gender && touched.gender
+                            ? <p className={styles.formError} style={{color:'red'}}>{errors.gender} </p>: null
+                        }
                     </div>
                 </div>
                 <button type="submit" className={styles.submitBtn}>Update Profile</button>

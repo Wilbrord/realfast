@@ -8,7 +8,9 @@ import { AiOutlineClose,AiOutlineArrowRight } from 'react-icons/ai';
 export default function MainNav() {
     const [showMobileNav,setShowMobileNav] = useState(false);
 
-    const router = useRouter()
+    const router = useRouter();
+
+
      
     
 
@@ -16,73 +18,79 @@ export default function MainNav() {
         <div>
             <nav className={navbarStyles.navBar} style={{
                 backgroundColor:router.asPath.split('/').includes('talents') ? '#ddd6fe' : null
-            }}>
-            <ul className={navbarStyles.navSection}>
-                <li className={navbarStyles.responsiveMenuItems}>
-                <Link href='/' className={navbarStyles.brandName}>Real Fast</Link>
-                </li>
-                <li>
-                <Image width={30} height={38} src='/realfast_logo.png' alt='real fast logo'/>
-                </li>
+                }}>
+                <ul className={navbarStyles.navSection}>
+                    <li className={navbarStyles.responsiveMenuItems}>
+                    <Link href='/' className={navbarStyles.brandName}>Real Fast</Link>
+                    </li>
+                    <li>
+                    <Image width={30} height={38} src='/realfast_logo.png' alt='real fast logo'/>
+                    </li>
 
-                <li className={navbarStyles.responsiveMenuItems}>
-                <Link href='#' className={navbarStyles.navText}>Find Jobs</Link>
-                </li>
-            </ul>
+                    <li className={navbarStyles.responsiveMenuItems}>
+                    <Link href='#' className={navbarStyles.navText}>Find Jobs</Link>
+                    </li>
+                </ul>
 
-            <ul className={navbarStyles.navSection}>
-                <li className={navbarStyles.responsiveMenuItems} 
-                style={{borderRight:'2px solid gray',paddingRight:8}}>
-                <Link href='#' className={navbarStyles.navText}>Sign in</Link>
-                </li>
-                <li className={navbarStyles.responsiveMenuItems}>
-                <Link href='#' className={navbarStyles.navText}>Post a job</Link>
-                </li>
-                <li>
-                <HiOutlineMenu 
-                className={navbarStyles.menu}
-                onClick={() => setShowMobileNav(true)}/>
-                </li>
-            </ul>
+                <ul className={navbarStyles.navSection}>
+                    <li className={navbarStyles.responsiveMenuItems} 
+                    style={{borderRight:'2px solid gray',paddingRight:8}}>
+                    <Link href='#' className={navbarStyles.navText}>Sign in</Link>
+                    </li>
+                    <li className={navbarStyles.responsiveMenuItems}>
+                    <Link href='#' className={navbarStyles.navText}>Post a job</Link>
+                    </li>
+                    <li>
+                    <HiOutlineMenu 
+                    className={navbarStyles.menu}
+                    onClick={() => setShowMobileNav(true)}/>
+                    </li>
+                </ul>
             </nav>
 
             <nav className={navbarStyles.mobileNav} 
-            style={{display:showMobileNav ? 'block' : 'none'}}>
-            <AiOutlineClose 
-            className={navbarStyles.mobileMenuClose}
-            onClick={() => setShowMobileNav(false)}
-            />
+                style={{display:showMobileNav ? 'block' : 'none'}}>
+                <AiOutlineClose 
+                className={navbarStyles.mobileMenuClose}
+                onClick={() => setShowMobileNav(false)}
+                />
 
-            <div className={navbarStyles.halfScreenMenuBlock}>
-                <ul className={navbarStyles.mobileMenuItems}>
-                <li className={navbarStyles.mobileMenuItem}>
-                    <Link href='/' className={navbarStyles.mobileMenuText}>Home</Link>
-                </li>
-                <li className={navbarStyles.mobileMenuItem}>
-                    <Link href='#' className={navbarStyles.mobileMenuText}>Find Jobs</Link>
-                </li>
-                <li className={navbarStyles.mobileMenuItem}>
-                    <Link href='#' className={navbarStyles.mobileMenuText}>Pricing</Link>
-                </li>
-                <li className={navbarStyles.mobileMenuItem}>
-                    <Link href='#' className={navbarStyles.mobileMenuText}>Support</Link>
-                </li>
-                <li className={navbarStyles.mobileMenuItem}>
-                    <Link href='#' className={navbarStyles.mobileMenuText}>Contact us</Link>
-                </li>
-                </ul>
+                <div className={navbarStyles.halfScreenMenuBlock}>
+                    <ul className={navbarStyles.mobileMenuItems}>
+                    <li className={navbarStyles.mobileMenuItem}>
+                       <Link href='/' onClick={() => setShowMobileNav(false)} className={navbarStyles.mobileMenuText}>Home</Link>
+                    </li>
+                    <li className={navbarStyles.mobileMenuItem}>
+                        <Link href='#' onClick={() => setShowMobileNav(false)} className={navbarStyles.mobileMenuText}>Find Jobs</Link>
+                    </li>
+                    <li className={navbarStyles.mobileMenuItem}>
+                        <Link href='#'onClick={() => setShowMobileNav(false)} className={navbarStyles.mobileMenuText}>Pricing</Link>
+                    </li>
+                    <li className={navbarStyles.mobileMenuItem}>
+                        <Link href='#'onClick={() => setShowMobileNav(false)} className={navbarStyles.mobileMenuText}>Support</Link>
+                    </li>
+                    <li className={navbarStyles.mobileMenuItem}>
+                        <Link href='#' onClick={() => setShowMobileNav(false)}className={navbarStyles.mobileMenuText}>Contact us</Link>
+                    </li>
+                    </ul>   
 
-                <div className={navbarStyles.mobileBottomItems}>
-                <Link href='#' className={navbarStyles.signinBtn}>
-                    <span className={navbarStyles.btnItems}>Sign in</span>
-                    <AiOutlineArrowRight className={navbarStyles.btnItems}/></Link>
-                <Link href='#' className={navbarStyles.createAcctBtn}>
-                    <span>Create account</span>
-                    <AiOutlineArrowRight />
-                </Link>
+                    <div className={navbarStyles.mobileBottomItems}>
+                        <Link href='#' className={navbarStyles.altBtn} 
+                            onClick={() => setShowMobileNav(false)}>
+                            <span className={navbarStyles.btnItems}>Sign in</span>
+                            <AiOutlineArrowRight className={navbarStyles.btnItems}/>
+                        </Link>
+                        <Link 
+                        href='#' 
+                        className={navbarStyles.altBtn}
+                        style={{backgroundColor:'#3730a3',color:'#fff',}}
+                        onClick={() => setShowMobileNav(false)}>
+                            <span className={navbarStyles.btnItems}>Create account</span>
+                            <AiOutlineArrowRight />
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         </div>
     )
 }
@@ -99,8 +107,8 @@ const navbarStyles = {
     mobileMenuItems:'flex flex-col gap-3 pt-[60px] pr-4',
     mobileMenuItem:'text-end',
     mobileMenuText:'text-[20px] font-reading text-gray-400',
-    mobileBottomItems:'px-3',
-    signinBtn:'block w-full h-[58px] flex flex-row justify-between items-center px-3 bg-pink-400 rounded-md mb-10',
+    mobileBottomItems:'flex flex-col gap-2 px-3 pb-3 ',
+    altBtn:'block w-full h-[58px] flex flex-row justify-between items-center px-3 bg-pink-400 rounded-md mb-10',
     btnItems:'text-xl',
     createAcctBtn:''
   }

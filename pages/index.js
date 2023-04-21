@@ -20,15 +20,15 @@ export default function Home() {
       </Head>
       <main className={styles.container } styles={{height:`${screenHeight}px`}}>
         <div className={styles.wrapper}>   
-            <div className={styles.searchBlock}>
-              <div className={styles.searchPanel}>
-                <input type='text' placeholder='eg. human resources manager' className={styles.search}/>
-                <button className={styles.searchBtn}>
-                  Search
-                  <GiMagnifyingGlass/>  
-                </button>
-                </div>
-                <p className={styles.message}>Your dream job is just a click away</p>
+              <div className={styles.searchBlock}>
+                  <div className={styles.searchPanel}>
+                    <input type='text' placeholder='eg. human resources manager'  className= {styles.search}/>
+                    <button className={styles.searchBtn}>
+                      Search
+                      <GiMagnifyingGlass/>  
+                    </button>
+                  </div>
+                  <p className={styles.message}>Your dream job is just a click away</p>
               </div>
               
           
@@ -51,6 +51,6 @@ const styles = {
   search:'w-full  border border-indigo-200 rounded-full py-5 px-3',
   searchBtn:'flex flex-row items-center bg-indigo-800 text-white px-3 py-5 rounded-full pointer-cursor',
   message:'text-center mt-2',
-  otherActions:'flex flex-row gap-4 justify-center',
-  quickFinder:'md:w-[200px] md:h-[120px] bg-indigo-800  border shadow-xl rounded-xl text-lg text-indigo-200 ',
+  otherActions:'flex flex-col md:flex-row gap-4 justify-center',
+  quickFinder:'md:w-[200px] h-[60px] md:h-[120px] bg-indigo-800  border shadow-xl rounded-xl text-lg text-indigo-200 ',
 }

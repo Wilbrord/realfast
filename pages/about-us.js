@@ -7,11 +7,11 @@ export default function About_us (){
 
     // const router = useRouter();
 
-    // setTimeout(() => {
-    //     return router.push('/search')
-    // },3000)
+    setTimeout(() => {
+        return router.push('/search')
+    },3000)
 
-    // console.log(router.query);
+    console.log(router.query);
 
     useEffect (() => {
         const rNums = [];
