@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { auth } from "@/settings/firebase/firebase.setup";
 import { signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import { FcGoogle } from 'react-icons/fc';
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillGithub,AiFillInstagram,AiFillFacebook } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
@@ -114,8 +114,15 @@ export default function Signin () {
 
                     <button 
                     className={styles.signinBtn}
-                    onClick={() => signIn('github')} 
-                    ><AiFillGithub/></button>
+                    onClick={() => signIn('github')}><AiFillGithub/></button>
+
+                    <button 
+                    className={styles.signinBtn}
+                    onClick={() => signIn('instagram')} ><AiFillInstagram/></button>
+
+                    <button 
+                    className={styles.signinBtn}
+                    onClick={() => signIn('facebook')} ><AiFillFacebook/></button>
                 </div>
             </div>
         </main>
