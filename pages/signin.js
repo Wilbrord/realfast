@@ -7,10 +7,9 @@ import * as yup from 'yup';
 import { auth } from "@/settings/firebase/firebase.setup";
 import { signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import { FcGoogle } from 'react-icons/fc';
-import { AiFillGithub,AiFillInstagram,AiFillFacebook } from "react-icons/ai";
+import { AiFillGithub,AiFillFacebook,AiFillTwitterCircle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 import { useSession } from "next-auth/react";
-
 
 //create a validation schema (validation rules)
 const fieldsSchema = yup.object().shape({
@@ -44,16 +43,16 @@ export default function Signin () {
             password:'',
         },
         onSubmit:(values) => {
-            signInWithEmailAndPassword(auth,values.email,values.password)
-            .then(() => {
-                onAuthStateChanged(auth,(user) => {
-                    setUid(user.uid);
-                    setEmail(user.email);
-                });
+            // signInWithEmailAndPassword(auth,values.email,values.password)
+            // .then(() => {
+            //     onAuthStateChanged(auth,(user) => {
+            //         setUid(user.uid);
+            //         setEmail(user.email);
+            //     });
 
-                router.push('/talents/profile-update')
-            })
-            .catch(error => console.log(error));
+            //     router.push('/talents/profile-update')
+            // })
+            // .catch(error => console.log(error));
         } 
     });
 
@@ -103,7 +102,14 @@ export default function Signin () {
                         }
                     </div>
 
-                    <button type="submit" className={styles.submitBtn}>Sign in</button>
+                    <button 
+                    type="submit" 
+                    className={styles.submitBtn}
+                    onClick={() => signIn('credentials',{
+                        email:values.email,
+                        password:values.password,
+                        redirect:false
+                    })}>Sign in</button>
                 </form>
 
                 <p className="text-lg text-center my-2">OR Sign in with</p>
@@ -118,7 +124,7 @@ export default function Signin () {
 
                     <button 
                     className={styles.signinBtn}
-                    onClick={() => signIn('instagram')} ><AiFillInstagram/></button>
+                    onClick={() => signIn('twitter')} ><AiFillTwitterCircle/></button>
 
                     <button 
                     className={styles.signinBtn}
