@@ -27,7 +27,7 @@ export default function Signin () {
     const router = useRouter();
 
     const handleNextAuthSignin = () => {
-        signIn('google')
+        signIn('google');
     }
 
     session ? router.push('/talents') : null;//done on client side
