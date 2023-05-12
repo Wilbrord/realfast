@@ -8,10 +8,9 @@ import { auth } from '@/settings/firebase/firebase.setup';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirestoreAdapter } from "@next-auth/firebase-adapter";
 import { cert } from "firebase-admin/app"
+import EmailProvider from 'next-auth/providers/email';
 
-
-export default NextAuth({
-
+export const nextAuthOptions = {
   providers:[
     GoogleProvider({
       clientId:process.env.GOOGLE_CLIENT_ID,
@@ -28,6 +27,11 @@ export default NextAuth({
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID,
       clientSecret: process.env.TWITTER_CLIENT_SECRET
+    }),
+    EmailProvider({
+      server: process.env.EMAIL_SERVER,
+      from: process.env.EMAIL_FROM,
+      // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
     }),
     CredentialsProvider({
       name:'Credentials',
@@ -50,9 +54,9 @@ export default NextAuth({
       }
     })
   ],
-  pages:{
-    signin:'/signin'
-  },
+  // pages:{
+  //   signin:'/signin'
+  // },
   adapter:FirestoreAdapter({
     credential:cert({
         projectId: process.env.FIREBASE_PROJECT_ID,
@@ -60,4 +64,9 @@ export default NextAuth({
         privateKey: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n") : undefined,
     }),
   }),
-});
+}
+
+
+
+
+export default NextAuth(nextAuthOptions);

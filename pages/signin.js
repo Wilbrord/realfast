@@ -9,7 +9,9 @@ import { signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub,AiFillFacebook,AiFillTwitterCircle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
+import { nextAuthOptions } from "./api/auth/[...nextauth]";
+//import { useSession } from "next-auth/react";
 
 //create a validation schema (validation rules)
 const fieldsSchema = yup.object().shape({
@@ -20,9 +22,9 @@ const fieldsSchema = yup.object().shape({
 export default function Signin () {
     const [screenHeight,setScreenHeight] = useState(0);
     const { uid,setUid,email,setEmail } = useContext(AppContext);
-    const { data:session } = useSession();
+   //const { data:session } = useSession();
 
-    console.log(session);
+    //console.log(session);
 
     const router = useRouter();
 
@@ -30,7 +32,7 @@ export default function Signin () {
         signIn('google');
     }
 
-    session ? router.push('/talents') : null;//done on client side
+    //session ? router.push('/talents') : null;//done on client side
 
     useEffect(() => {
         setScreenHeight(window.innerHeight - 60);
@@ -134,6 +136,30 @@ export default function Signin () {
         </main>
         </>
     )
+}
+
+export async function getServerSideProps(context) {
+    const session = await getServerSession(context.req,context.res,nextAuthOptions);
+
+    //if there is an active session, redirect to talalent to dashboard
+
+    if (!session) {
+        console.log('from server-side>>>>> no sesstion');
+    }else if (session){
+        console.log('From derver-side',session);
+         
+        return {
+            redirect:{
+                destination:'/talents',
+                permanent:false,
+            }
+        }
+    }
+
+
+    return {
+        props:{session,}
+    }
 }
 
 const styles = {
