@@ -11,6 +11,7 @@ import { cert } from "firebase-admin/app"
 import EmailProvider from 'next-auth/providers/email';
 
 export const nextAuthOptions = {
+  secret:process.env.NEXT_AUTH_SECRET,
   providers:[
     GoogleProvider({
       clientId:process.env.GOOGLE_CLIENT_ID,
@@ -31,7 +32,6 @@ export const nextAuthOptions = {
     EmailProvider({
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
-      // maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
     }),
     CredentialsProvider({
       name:'Credentials',
@@ -54,9 +54,9 @@ export const nextAuthOptions = {
       }
     })
   ],
-  // pages:{
-  //   signin:'/signin'
-  // },
+  pages:{
+    signin:'/signin'
+  },
   adapter:FirestoreAdapter({
     credential:cert({
         projectId: process.env.FIREBASE_PROJECT_ID,
@@ -64,9 +64,10 @@ export const nextAuthOptions = {
         privateKey: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n") : undefined,
     }),
   }),
+  callbacks:{
+    async session (session) {
+      return session;
+    }
+  }
 }
-
-
-
-
 export default NextAuth(nextAuthOptions);
