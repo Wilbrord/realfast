@@ -114,7 +114,10 @@ export default function Signin () {
                     className={styles.submitBtn}
                     onClick={() => {
                         if(authChoice) {
-                            signIn('email')
+                            signIn('email',{
+                                email:values.email,
+                                redirect:false
+                            })
                         } else {
                             signIn('credentials',{
                                 email:values.email,

@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useEffect,useState,useContext } from "react";
 import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../api/auth/[...nextauth]";
+// import { getServerSession } from "next-auth";
+// import { nextAuthOptions } from "../api/auth/[...nextauth]";
 
 
 export default function Dashboard () {
@@ -33,37 +33,37 @@ export default function Dashboard () {
     )
 }
 
-export async function getServerSideProps(context) {
-    const session = await getServerSession(context.req,context.res,nextAuthOptions);
+// export async function getServerSideProps(context) {
+//     const session = await getServerSession(context.req,context.res,nextAuthOptions);
 
     //if there is an active session, redirect to talalent to dashboard
 
-    if (session) {
-        if(session.user.accountType != 'talent') {
-            return {
-                redirect:{
-                    destination:'/',
-                    permanent:false,
-                }
-            }
-        } else {
-            return {
-                redirect:{
-                    destination:'/signin',
-                    permanent:false,
-                }
-            }
-        }
-    } 
+//     if (session) {
+//         if(session.user.accountType != 'talent') {
+//             return {
+//                 redirect:{
+//                     destination:'/',
+//                     permanent:false,
+//                 }
+//             }
+//         } else {
+//             return {
+//                 redirect:{
+//                     destination:'/signin',
+//                     permanent:false,
+//                 }
+//             }
+//         }
+//     } 
 
 
 
-    return {
-        props:{
-            session:JSON.parse(JSON.stringify(session))
-        }
-    }
-}
+//     return {
+//         props:{
+//             session:JSON.parse(JSON.stringify(session))
+//         }
+//     }
+// }
 
 const styles = {
     container:'w-full h-screen flex flex-col justify-center items-center px-16',

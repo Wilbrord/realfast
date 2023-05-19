@@ -24,7 +24,8 @@ export default function PostJob () {
             requirements:values.requirements,
             wages:values.wages,
             timestamp:new Date().getTime(),
-            status:'active'
+            status:'active',
+            url:title.toLowerCase().split(' ').join('-'),
         })
             .then(() => {
                 console.log('posted sucesfully');
@@ -35,23 +36,11 @@ export default function PostJob () {
     const { values,handleBlur,handleChange,errors,handleSubmit,touched } = useFormik({
         validationSchema:fieldsSchema,
         initialValues:{
-            jobTitle:'',discription:'',requirements:'',wages:'', 
-        },
-        onSubmit:(values) => {
-            handlFirestoreWriteDocument()
-            // addDoc(collection(),(db,'jobs'),{
-            //     title:values.jobTitle,
-            //     desc:values.description,
-            //     requirements:values.requirements,
-            //     wages:values.wages,
-            //     timestamp:new Date().getTime(),
-            //     status:'active'
-            // })
-            // .then(() => {
-            //     console.log('posted sucesfully');
-            // })
-            // .catch(error => console.log(error))
-        },
+            jobTitle:'',discription:'',requirements:'',wages:'', },
+            onSubmit:(values) => {
+                handlFirestoreWriteDocument()
+            }
+        
     });
 
     return (
