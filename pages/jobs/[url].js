@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { RiBriefcase4Fill } from 'react-icons/ri'
 import { AiFillFlag } from 'react-icons/ai'
 import { db } from "@/settings/firebase/firebase.setup";
-import { getDocs,collection,query,where } from "firebase/firestore";
+import { getDocs,doc,collection,query,where } from "firebase/firestore";
 
 export async function getStaticPaths() {
     const onSnap = await getDocs(collection(db,'jobs'));
@@ -54,7 +54,71 @@ export default function Job({jobData}) {
         </Head>
 
         <main className='lg:grid' style={{minHeight:`${screenHeight}px`}}>
-           
+            <div className='border rounded-md border-5 lg:w-6/12 justify-self-center shadow-sm mt-5 px-3 mx-3'>
+                <div className='lg:grid lg:grid-cols-2 my-3 border-b-2 px-3'>
+                    <span>
+                        <h2 className='font-bold'>Front-End Developer ( REACT )</h2>
+                        <Link href='#' className='text-blue-700'>Apple</Link>
+                        <p>FCT Abuja</p>
+                        <button className='text-sm font-bold bg-blue-700 text-white rounded-md px-4 py-4 my-5'>APPLY ON COMPANY SITE</button>
+                    </span>
+                </div>
+                
+                <div className='lg:grid lg:grid-cols-3 border-b-2 my-6 px-3'>
+                    <span>
+                        <h1 className='font-bold'>Job details</h1>
+                        <small>no matching job preferences</small>
+                        <span className='flex gap-3 my-3'>
+                            <RiBriefcase4Fill className='text-2xl'/> 
+                            <p className='text-md font-semibold'>Job Type</p>
+                        </span>
+                        <p className='font-bold mb-8 text-sm'>Full-Time</p>
+                    </span>
+                </div>
+                <div className='mt-14'>
+                    <p className=''>{jobData.desc}</p>
+
+                    <h4 className='font-bold my-4'>Essential Duties & Responsibilities</h4>
+                    <div className='mx-10 mb-16'>
+                        <li>
+                        Responsible for architecting and defining the Front-end framework to solve complex designs and interactions that reflect the creative and art direction provided by the Product Designer
+                        </li>
+                        <li>
+                            Responsible for building functional Front-end applications.
+                        </li>
+                        <li>
+                            Responsible for mentorship and guidance to technical team members on all project activities
+                        </li>
+                        <li>
+                            Able to shift between a creative and a technical focus depending on the project need and/or the type of project
+                        </li>
+                        <li>
+                            Participates in developing supporting proposal materials for projects
+                        </li>
+                        <li>
+                            Write technical documentation (admin guides), white papers, and presentations, contributing to determining internal processes.
+                        </li>
+                        <li>
+                            Responsible for mentorship and guidance to technical team members on all project activities
+                        </li>
+                        <li>
+                            Able to shift between a creative and a technical focus depending on the project need and/or the type of project
+                        </li>
+                        <li>
+                            Participates in developing supporting proposal materials for projects
+                        </li>
+                        <li>
+                            Write technical documentation (admin guides), white papers, and presentations, contributing to determining internal processes.
+                        </li>
+
+                        <button href="" className='bg-gray-300 flex gap-3 text-black rounded font-bold px-7 py-4 mt-10'>
+                            <AiFillFlag className='text-2xl'/>
+                            <p>Report Job</p>
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
         </main>
         </>
     )
