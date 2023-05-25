@@ -6,13 +6,6 @@ import { jobsData } from "@/data/jobsdata";
 export default function AboutUs () {
     const router = useRouter();
     
-    // setTimeout(() => {
-    //     return router.push('/search')
-    // },3000)
-
-    //console.log(router.query.keyword);
-
-    //run something after page has been render
     useEffect(() => {
         const rNums = [];
 
