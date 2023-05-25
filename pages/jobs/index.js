@@ -2,9 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { db } from "@/settings/firebase/firebase.setup";
 import { getDocs,collection,query,orderBy } from "firebase/firestore";
-import { Box,Card,CardActions,CardContent,Button,Typography } from "@mui/material";
-import { numberWithCommas } from "@/utilities/numberWithCommas";
-
+import { Card,CardActions,CardContent,Button,Typography } from "@mui/material";
+import { numberWithCommas } from "@/utilities/numbersWithCommas";
 export async function getStaticProps() {
     const jobs = [];
 
@@ -55,13 +54,12 @@ export default function Jobs ({jobsData}) {
                                         ₦{numberWithCommas(item.data.wages)}
                                     </Typography>
                                     <Typography variant="body2">
-                                        well meaning and kindly.
-                                        <br />
-                                        {'"a benevolent smile"'}
+                                        {item.data.desc}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button size="small">Learn More</Button>
+                                    <Button href={'jobs/'+item.data.url} size="small"
+                                    variant="contained">View ditails</Button>
                                 </CardActions>
                             </Card>
                         )
