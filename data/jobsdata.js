@@ -1,3 +1,4 @@
+
 export const jobsData = [
     {id:2,title:'React Remote Developer',loc:'Abuja'},
     {id:4,title:'React Next JS Developer',loc:'Kaduna'},
