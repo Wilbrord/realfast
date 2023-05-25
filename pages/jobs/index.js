@@ -1,24 +1,15 @@
-import { useState,useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { db } from "@/settings/firebase/firebase.setup";
 import { getDocs,collection,query,orderBy } from "firebase/firestore";
-
-//headless cms
+import { Box,Card,CardActions,CardContent,Button,Typography } from "@mui/material";
+import { numberWithCommas } from "@/utilities/numberWithCommas";
 
 export async function getStaticProps() {
-    const jobs = []
+    const jobs = [];
 
     const q = query(collection(db,'jobs'),orderBy('timestamp','desc'))
     const onSnap = await getDocs(q);
-    // setJobs(onSnap.docs.map(document => {
-    //     return {
-    //         id:document.id,
-    //         data:{
-    //             ...document.data()
-    //         }
-    //     }
-    // }));
 
     onSnap.forEach(document => {
         jobs.push({
@@ -44,24 +35,35 @@ export default function Jobs ({jobsData}) {
             <link rel="icon" href="/realfast_logo.png" />
         </Head>
         <main className={styles.container}>
-            <h1 className="text-3xl mb-4">Recent Jobs</h1>
+            <h1 className="text-3xl mb-4">Recent jobs</h1>
 
             <div className="flex flex-col gap-3">
                 {
                     jobsData.map(item => {
                         return (
-                            <div className="p-3 border border-gray-300 rounded-lg" key={item.id}>
-                                <div className="flex flex-row justify-between mb-2">
-                                    <p className="font-bold text-lg">{item.data.title}</p>
-                                    <p>Salary: {item.data.wages}</p>
-                                </div>
-
-                                <div>
-                                    {item.data.desc}
-                                </div>
-
-                                <Link href={'jobs/'+item.data.url} className="bg-indigo-800 text-white text-2xl px-4 rounded-md">Job Details</Link>
-                            </div>
+                            <Card sx={{ minWidth: 280 }}>
+                                <CardContent>
+                                    <Typography 
+                                    sx={{ fontSize: 14 }} 
+                                    color="text.secondary" gutterBottom>
+                                        Word of the Day
+                                    </Typography>
+                                    <Typography variant="h5" component="div">
+                                        {item.data.title}
+                                    </Typography>
+                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        ₦{numberWithCommas(item.data.wages)}
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        well meaning and kindly.
+                                        <br />
+                                        {'"a benevolent smile"'}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Learn More</Button>
+                                </CardActions>
+                            </Card>
                         )
                     })
                 }
