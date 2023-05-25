@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import JobCard from "@/components/JobCard"; 
-import { jobsData } from "@/data/jobsdata";
+import { jobsData } from "@/data/Job-data";
 
 export default function AboutUs () {
     const router = useRouter();
