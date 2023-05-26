@@ -1,9 +1,10 @@
 import Head from "next/head";
-import Link from "next/link";
+import Image from "next/image";
 import { db } from "@/settings/firebase/firebase.setup";
 import { getDocs,collection,query,orderBy } from "firebase/firestore";
 import { Card,CardActions,CardContent,Button,Typography } from "@mui/material";
 import { numberWithCommas } from "@/utilities/numbersWithCommas";
+
 export async function getStaticProps() {
     const jobs = [];
 
@@ -53,10 +54,17 @@ export default function Jobs ({jobsData}) {
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                         ₦{numberWithCommas(item.data.wages)}
                                     </Typography>
-                                    <Typography variant="body2">
-                                        {item.data.desc}
-                                    </Typography>
+                                    <div className="grid grid-cols-3">
+                                        <Image 
+                                        scr={item.data.coverImage ? item.data.coverImage : '/realfast_logo.PNG'}
+                                        alt={item.data.title}
+                                        width={480} height={360}/>
+                                        <div className="col-span-2">
+                                        <Typography variant="body2">{item.data.desc}</Typography>
+                                        </div>
+                                    </div>
                                 </CardContent>
+
                                 <CardActions>
                                     <Button href={'jobs/'+item.data.url} size="small"
                                     variant="contained">View ditails</Button>
