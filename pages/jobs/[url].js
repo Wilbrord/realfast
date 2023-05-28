@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { RiBriefcase4Fill } from 'react-icons/ri'
 import { AiFillFlag } from 'react-icons/ai'
 import { db } from "@/settings/firebase/firebase.setup";
-import { getDocs,doc,collection,query,where } from "firebase/firestore";
+import { getDocs,collection,query,where } from "firebase/firestore";
 
 export async function getStaticPaths() {
     const onSnap = await getDocs(collection(db,'jobs'));
