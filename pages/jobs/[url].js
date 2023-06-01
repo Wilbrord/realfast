@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { RiBriefcase4Fill } from 'react-icons/ri'
 import { AiFillFlag } from 'react-icons/ai'
 import { db } from "@/settings/firebase/firebase.setup";
-import { getDocs,collection,query,where } from "firebase/firestore";
+import { getDocs,doc,collection,query,where } from "firebase/firestore";
 
 export async function getStaticPaths() {
     const onSnap = await getDocs(collection(db,'jobs'));
@@ -57,7 +57,7 @@ export default function Job({jobData}) {
             <div className='border rounded-md border-5 lg:w-6/12 justify-self-center shadow-sm mt-5 px-3 mx-3'>
                 <div className='lg:grid lg:grid-cols-2 my-3 border-b-2 px-3'>
                     <span>
-                        <h2 className='font-bold'>Front-End Developer ( REACT )</h2>
+                        <h2 className='font-bold'>{jobData.title}</h2>
                         <Link href='#' className='text-blue-700'>Apple</Link>
                         <p>FCT Abuja</p>
                         <button className='text-sm font-bold bg-blue-700 text-white rounded-md px-4 py-4 my-5'>APPLY ON COMPANY SITE</button>

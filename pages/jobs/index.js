@@ -2,8 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import { db } from "@/settings/firebase/firebase.setup";
 import { getDocs,collection,query,orderBy } from "firebase/firestore";
-import { Card,CardActions,CardContent,Button,Typography } from "@mui/material";
-import { numberWithCommas } from "@/utilities/numbersWithCommas";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { numberWithCommas } from "@/utilities/numberWithCommas";
 
 export async function getStaticProps() {
     const jobs = [];
@@ -43,31 +47,26 @@ export default function Jobs ({jobsData}) {
                         return (
                             <Card sx={{ minWidth: 280 }}>
                                 <CardContent>
-                                    <Typography 
-                                    sx={{ fontSize: 14 }} 
-                                    color="text.secondary" gutterBottom>
-                                        Word of the Day
+                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                    Word of the Day
                                     </Typography>
                                     <Typography variant="h5" component="div">
-                                        {item.data.title}
+                                    {item.data.title}
                                     </Typography>
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                        ₦{numberWithCommas(item.data.wages)}
+                                    ₦{numberWithCommas(item.data.wages)}
                                     </Typography>
-                                    <div className="grid grid-cols-3">
-                                        <Image 
-                                        scr={item.data.coverImage ? item.data.coverImage : '/realfast_logo.PNG'}
-                                        alt={item.data.title}
-                                        width={480} height={360}/>
+                                    <div className=" flex gap-3 grid-cols-3">
+                                        <Image src={item.data.coverImage ? item.data.coverImage : '/images/error-404.png'} alt={item.data.title} width={480} height={360}/>
                                         <div className="col-span-2">
-                                        <Typography variant="body2">{item.data.desc}</Typography>
+                                            <Typography variant="body2">
+                                            {item.data.desc}
+                                            </Typography>
                                         </div>
                                     </div>
                                 </CardContent>
-
                                 <CardActions>
-                                    <Button href={'jobs/'+item.data.url} size="small"
-                                    variant="contained">View ditails</Button>
+                                    <Button href={'jobs/'+item.data.url} size="small" variant="contained">View Job</Button>
                                 </CardActions>
                             </Card>
                         )
